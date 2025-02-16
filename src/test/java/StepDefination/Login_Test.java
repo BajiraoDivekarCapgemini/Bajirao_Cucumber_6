@@ -60,11 +60,11 @@ public class Login_Test {
 //		driver.switchTo().newWindow(WindowType.TAB);
 //		Set<String> windows = driver.getWindowHandles();
 //		System.out.println("Window Size:"+windows.size());
-		JavascriptExecutor js=(JavascriptExecutor) driver;
-		js.executeScript("window.open()");
-//		WebElement ele = driver.findElement(By.xpath("//input[@name='user-name']"));
-//		ele.sendKeys(Keys.chord(Keys.CONTROL+"t"));
-//		hp.takeScreenShotAfterEveryStep();
+//		JavascriptExecutor js=(JavascriptExecutor) driver;
+//		js.executeScript("window.open()");
+		WebElement ele = driver.findElement(By.xpath("//input[@name='user-name']"));
+		ele.sendKeys(Keys.chord(Keys.CONTROL+"t"));
+		hp.takeScreenShotAfterEveryStep();
 	}
 
 	@When("^User Enter The Password \"([^\"]*)\"$")
