@@ -2,6 +2,7 @@ package com.main;
 
 import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -50,6 +51,18 @@ public static Scenario message;
 			e.printStackTrace();
 		}
 		return ele;
+		
+	}
+	
+	public List<WebElement> createWebElements(String xpath) {
+		List<WebElement> eles=new ArrayList<>();
+		try {
+			WebDriverWait wait=new WebDriverWait(heplerDriver, Duration.ofSeconds(30));
+			eles=wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(xpath)));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return eles;
 		
 	}
 	
