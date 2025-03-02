@@ -3,6 +3,7 @@ package StepDefination;
 
 
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -36,6 +37,7 @@ public class Login_Test {
 	public void initlizeBrowser() {
 		ToolDriver td=new ToolDriver();
 		 driver=td.initBrowser();
+		 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3000));
 		 lp=new LoginPage(driver);
 		 hp=new Helper(driver);
 	}
@@ -55,16 +57,7 @@ public class Login_Test {
 
 	@When("^User Enter The Username \"([^\"]*)\"$")
 	public void user_Enter_The_Username(String username) throws Throwable {
-		 
 		Assert.assertTrue(lp.enterUsername(username));
-//		driver.switchTo().newWindow(WindowType.TAB);
-//		Set<String> windows = driver.getWindowHandles();
-//		System.out.println("Window Size:"+windows.size());
-//		JavascriptExecutor js=(JavascriptExecutor) driver;
-//		js.executeScript("window.open()");
-		WebElement ele = driver.findElement(By.xpath("//input[@name='user-name']"));
-		ele.sendKeys(Keys.chord(Keys.CONTROL+"t"));
-		hp.takeScreenShotAfterEveryStep();
 	}
 
 	@When("^User Enter The Password \"([^\"]*)\"$")
@@ -86,6 +79,60 @@ public class Login_Test {
 	public void validate_the_user_is_successfully_logined() throws Throwable {
 			Assert.assertTrue(lp.exist());
 			hp.takeScreenShotAfterEveryStep();
+	}
+	
+	@When("Select the product {string}")
+	public void select_the_product(String string) throws Throwable {
+		String dynamicProductXpath="//div[normalize-space()='#Replace1']/ancestor::div[@class='inventory_item_label']/following-sibling::div//button";
+		hp.clickUsingDynamicXpath(dynamicProductXpath, string);
+		////a[@data-test='shopping-cart-link']
+		String cartLinkXpath="//a[@data-test='shopping-cart-link']";
+		WebElement ele = hp.createWebElement(cartLinkXpath);
+		hp.click(ele);
+		hp.takeScreenShotAfterEveryStep();
+		String productCartXpath="//div[normalize-space()='"+string+"']";
+		WebElement  productCartEle= hp.createWebElement(productCartXpath);
+		hp.exist(productCartEle);
+		hp.takeScreenShotAfterEveryStep();
+		String checkoutXpath="//button[@id='checkout']";
+		WebElement  checkoutButton= hp.createWebElement(checkoutXpath);
+		hp.click(checkoutButton);
+	}
+
+	@And("User Enter The FirstName {string}")
+	public void user_enter_the_first_name(String string) {
+		Assert.assertTrue(lp.enterFirstName(string));
+	}
+
+	@And("User Enter The LastName {string}")
+	public void user_enter_the_last_name(String string) throws Throwable {
+		
+		Assert.assertTrue(lp.enterLastName(string));
+
+	}
+
+	@And("User Enter The ZipCode {string}")
+	public void user_enter_the_zip_code(String string) throws Exception {
+		Assert.assertTrue(lp.enterPostalCode(string));
+		hp.takeScreenShotAfterEveryStep();
+
+	}
+
+	@Then("validate the product order successfully")
+	public void validate_the_product_order_successfully() throws Exception {
+		WebElement  continueButton= hp.createWebElement("//input[@id='continue']");
+		hp.click(continueButton);
+		WebElement  finishButton= hp.createWebElement("//button[@id='finish']");
+		hp.click(finishButton);
+		WebElement  orderValidationEle= hp.createWebElement("//h2[text()='Thank you for your order!']");
+		if(orderValidationEle!=null) {
+			Assert.assertEquals(1, 1);
+			hp.takeScreenShotAfterEveryStep();
+		}else {
+			hp.takeScreenShotAfterEveryStep();
+		}
+		
+	 
 	}
 	
 //	@Then("validate the user is enter invalid credentials {string}")

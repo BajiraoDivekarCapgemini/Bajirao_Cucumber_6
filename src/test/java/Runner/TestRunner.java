@@ -14,7 +14,7 @@ import io.cucumber.core.cli.Main;
 
 public class TestRunner {
 	public static void main(String[] args) {
-		Main.main(new String[]{"-g", "StepDefination", "C:\\Users\\S TECH\\eclipse-workspace\\Bajirao_Selenium_PR\\src\\test\\resources\\Featurefile"});
+		Main.main(new String[]{"-g", "StepDefination", "C:\\Users\\S TECH\\eclipse-workspace\\Bajirao_Selenium_PR\\src\\test\\resources\\Featurefile\\login.feature"});
 	}
 
 }

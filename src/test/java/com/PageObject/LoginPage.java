@@ -29,6 +29,9 @@ public class LoginPage {
 	@FindBy(xpath="//input[@id='login-button']") private WebElement loginButton;
 	@FindBy(xpath="//span[text()='Products']") private WebElement dashboard;
 	@FindBy(xpath="//p[text()='Invalid credentials']") private WebElement invalidCredentials;
+	@FindBy(xpath="//input[@name='firstName']") private WebElement firstName;
+	@FindBy(xpath="//input[@name='lastName']") private WebElement lastName;
+	@FindBy(xpath="//input[@name='postalCode']") private WebElement postalCode;
 	
 	
 	public LoginPage(WebDriver driver) {
@@ -74,6 +77,33 @@ public class LoginPage {
 	
 	public boolean invalidCreadValidation() {
 		if(!helper.exist(invalidCredentials)) {
+			return false;
+		}
+		else{
+			return true;	
+		}
+	}
+	
+	public boolean enterFirstName(String firstname) {
+		if(!helper.enterText(firstName, firstname)) {
+			return false;
+		}
+		else{
+			return true;	
+		}
+	}
+	
+	public boolean enterLastName(String Lastname) {
+		if(!helper.enterText(lastName, Lastname)) {
+			return false;
+		}
+		else{
+			return true;	
+		}
+	}
+	
+	public boolean enterPostalCode(String zipCode) {
+		if(!helper.enterText(postalCode, zipCode)) {
 			return false;
 		}
 		else{
