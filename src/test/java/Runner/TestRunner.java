@@ -5,12 +5,14 @@ package Runner;
 import org.junit.runner.RunWith;
 
 import io.cucumber.core.cli.Main;
-//import io.cucumber.junit.Cucumber;
-//import io.cucumber.junit.CucumberOptions;
-//
-//@RunWith(Cucumber.class)
-//@CucumberOptions(features = "/src/test/resources/Featurefile",
-//               glue = { "StepDefination" })
+import io.cucumber.junit.Cucumber;
+import io.cucumber.junit.CucumberOptions;
+
+@RunWith(Cucumber.class)
+@CucumberOptions(features = "/src/test/resources/Featurefile",
+                    tags = "@smoke",
+                    dryRun = true,
+                 glue = { "StepDefination" })
 
 public class TestRunner {
 	public static void main(String[] args) {
