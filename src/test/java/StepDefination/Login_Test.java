@@ -97,6 +97,7 @@ public class Login_Test {
 		String checkoutXpath="//button[@id='checkout']";
 		WebElement  checkoutButton= hp.createWebElement(checkoutXpath);
 		hp.click(checkoutButton);
+		System.out.println("Selecting the product");
 	}
 
 	@And("User Enter The FirstName {string}")
