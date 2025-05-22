@@ -1,9 +1,9 @@
 Feature: Validate Login Functionality
 
   Background: 
-    Given User enter the url "https://www.saucedemo.com"
-    When User Enter The Username "standard_user"
-    And User Enter The Password "secret_sauce"
+    Given User enter the url "*******************"
+    When User Enter The Username "******"
+    And User Enter The Password "*******"
     And User Click On The Login_Button
     Then validate the user is successfully logined
 

@@ -36,7 +36,6 @@ public class ToolDriver {
 		String browserType = prop.get("browser").toString();
 		if(browserType.equalsIgnoreCase("Chrome")) {
 			ChromeOptions co=new ChromeOptions();
-			
 			co.addArguments("--disable-notifications");
 			co.addArguments("--remote-allow-origins=*");
 			//co.setBinary("C:\\Users\\S TECH\\git\\repository2\\Sample\\src\\main\\resources\\Driver\\chromedriver.exe");
@@ -65,13 +64,9 @@ public class ToolDriver {
 				co.addArguments("--remote-allow-origins=*");
 				co.addArguments("--headless");
 				tldriver.set(new ChromeDriver(co));
-				 //driver=new ChromeDriver(co);
 				getDriver().manage().deleteAllCookies();
 				getDriver().manage().window().maximize();
 				return getDriver();
-//				 driver.get("https://www.google.com");
-//				 System.out.println("Successfully Launched Google Page");
-//				 driver.quit();
 		}
 		return getDriver();
 	}

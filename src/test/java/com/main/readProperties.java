@@ -11,7 +11,19 @@ public class readProperties {
 			FileInputStream fis=new FileInputStream(path);
 			Properties prop=new Properties();
 			prop.load(fis);
+			String value=prop.getProperty("URL");
 			return prop;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public  String getDataFromProprtiesFile(String key) {
+		try {
+			Properties prop = readConfigData();
+			String value=prop.getProperty(key);
+			return value;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

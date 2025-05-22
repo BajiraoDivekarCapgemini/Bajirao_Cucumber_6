@@ -6,6 +6,8 @@ import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
 
 import org.junit.Assert;
@@ -21,7 +23,9 @@ import org.openqa.selenium.WindowType;
 import com.PageObject.LoginPage;
 import com.main.Helper;
 import com.main.ToolDriver;
+import com.main.readProperties;
 
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
@@ -31,11 +35,15 @@ public class Login_Test {
 	private WebDriver driver=null;
 	private LoginPage lp=null;
 	private Helper hp=null;
+	private readProperties rp=null;
+	private Properties prop=null;
 	
 	
 	@Before(order = 0)
 	public void initlizeBrowser() {
 		ToolDriver td=new ToolDriver();
+		 rp=new readProperties();
+		 prop = rp.readConfigData();
 		 driver=td.initBrowser();
 		 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3000));
 		 lp=new LoginPage(driver);
@@ -51,19 +59,19 @@ public class Login_Test {
 	@Given("User enter the url {string}")
 	public void user_enter_the_url(String string) throws Throwable {
 		System.out.println(Thread.currentThread().getId());
-		driver.get(string);
+		driver.get(rp.getDataFromProprtiesFile("URL"));
 		hp.takeScreenShotAfterEveryStep();
 	}
 
 	@When("^User Enter The Username \"([^\"]*)\"$")
 	public void user_Enter_The_Username(String username) throws Throwable {
-		Assert.assertTrue(lp.enterUsername(username));
+		Assert.assertTrue(lp.enterUsername(prop.getProperty("Username")));
 	}
 
 	@When("^User Enter The Password \"([^\"]*)\"$")
 	public void user_Enter_The_Password(String password) throws Throwable {
 		
-		Assert.assertTrue(lp.enterPassword(password));
+		Assert.assertTrue(lp.enterPassword(prop.getProperty("Password")));
 		hp.takeScreenShotAfterEveryStep();
 	}
 
