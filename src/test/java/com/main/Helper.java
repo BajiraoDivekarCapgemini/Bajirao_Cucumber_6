@@ -14,6 +14,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -21,14 +22,14 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import io.cucumber.java.Scenario;
 
 public class Helper {
-public static WebDriver heplerDriver;
+public  WebDriver heplerDriver;
 public static Scenario message; 
-	public Helper(WebDriver driver) {
-		 heplerDriver = driver;
-		 
-		
-	}
 	
+	public Helper(WebDriver driver) {
+		heplerDriver=driver;
+}
+	
+
 	public boolean waitAndPresenceOfElement(WebElement element) {
 		boolean status=false;
 		try {
@@ -124,6 +125,7 @@ public static Scenario message;
 	public boolean scrollIntoView(String xpath) {
 		boolean status=false;
 		try {
+			heplerDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3000));
 			WebDriverWait wait=new WebDriverWait(heplerDriver, Duration.ofSeconds(30));
 			WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
 			JavascriptExecutor js=(JavascriptExecutor) heplerDriver;
@@ -166,6 +168,8 @@ public static Scenario message;
 			String screenshotName = "Screenshot_Name"+date1;
 			message.attach(screenshot, "image/png", screenshotName);
     }
+	
+	
 
 	
 	

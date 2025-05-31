@@ -58,7 +58,6 @@ public class Login_Test {
 	
 	@Given("User enter the url {string}")
 	public void user_enter_the_url(String string) throws Throwable {
-		System.out.println(Thread.currentThread().getId());
 		driver.get(rp.getDataFromProprtiesFile("URL"));
 		hp.takeScreenShotAfterEveryStep();
 	}
@@ -70,7 +69,6 @@ public class Login_Test {
 
 	@When("^User Enter The Password \"([^\"]*)\"$")
 	public void user_Enter_The_Password(String password) throws Throwable {
-		
 		Assert.assertTrue(lp.enterPassword(prop.getProperty("Password")));
 		hp.takeScreenShotAfterEveryStep();
 	}
@@ -78,7 +76,8 @@ public class Login_Test {
 	@When("^User Click On The Login_Button$")
 	public void user_Click_On_The_Login_Button() throws Throwable {
 		Assert.assertTrue(lp.clickOnLoginButton());
-//		hp.takeScreenShotAfterEveryStep();
+		Thread.sleep(3000);
+		//driver.switchTo().alert().accept();
 
 	  
 	}

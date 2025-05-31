@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.main.Helper;
 
-public class LoginPage {
+public class LoginPage  {
 	
 	public Helper helper;
 	

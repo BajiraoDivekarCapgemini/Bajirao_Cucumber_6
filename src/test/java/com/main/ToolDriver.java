@@ -33,7 +33,8 @@ public class ToolDriver {
 //	}
 	
 	public  WebDriver initBrowser() {
-		String browserType = prop.get("browser").toString();
+		//String browserType = prop.get("browser").toString();
+		String browserType=prop.getProperty("browser");
 		if(browserType.equalsIgnoreCase("Chrome")) {
 			ChromeOptions co=new ChromeOptions();
 			co.addArguments("--disable-notifications");
