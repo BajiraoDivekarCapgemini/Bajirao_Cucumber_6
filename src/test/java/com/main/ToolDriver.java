@@ -16,10 +16,10 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 
 public class ToolDriver {
-	readProperties rp=new readProperties();
+	ReadProperties rp=new ReadProperties();
 	Properties prop=null;
 	public  WebDriver driver;
-	public static ThreadLocal<WebDriver> tldriver=new ThreadLocal<WebDriver>();
+	//public static ThreadLocal<WebDriver> tldriver=new ThreadLocal<WebDriver>();
 	
 	
 	public ToolDriver() {
@@ -42,11 +42,11 @@ public class ToolDriver {
 			//co.setBinary("C:\\Users\\S TECH\\git\\repository2\\Sample\\src\\main\\resources\\Driver\\chromedriver.exe");
 			
 			System.setProperty("webdriver.chrome.driver", ".\\src\\test\\resources\\Driver\\chromedriver.exe");
-//		     WebDriverManager.chromedriver().setup();
-		     tldriver.set(new ChromeDriver(co));
-		     getDriver().manage().deleteAllCookies();
-		     getDriver().manage().window().maximize();
-		     return getDriver();
+			//WebDriverManager.chromedriver().setup();
+		     driver =new ChromeDriver(co);
+		     driver.manage().deleteAllCookies();
+		     driver.manage().window().maximize();
+		     return driver;
 //			 driver.get("https://www.google.com");
 			 
 		}
@@ -64,21 +64,21 @@ public class ToolDriver {
 				co.addArguments("--disable-notifications");
 				co.addArguments("--remote-allow-origins=*");
 				co.addArguments("--headless");
-				tldriver.set(new ChromeDriver(co));
+				driver =new ChromeDriver();
 				 //driver=new ChromeDriver(co);
-				getDriver().manage().deleteAllCookies();
-				getDriver().manage().window().maximize();
-				return getDriver();
+//				getDriver().manage().deleteAllCookies();
+//				getDriver().manage().window().maximize();
+//				return getDriver();
 //				 driver.get("https://www.google.com");
 //				 System.out.println("Successfully Launched Google Page");
 //				 driver.quit();
 		}
-		return getDriver();
+		return driver;
 	}
 	
-	public static synchronized WebDriver getDriver() {
-		return tldriver.get();
-	}
+//	public static synchronized WebDriver getDriver() {
+//		return driver.get();
+//	}
 	
 	
 	

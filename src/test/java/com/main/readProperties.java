@@ -3,7 +3,7 @@ package com.main;
 import java.io.FileInputStream;
 import java.util.Properties;
 
-public class readProperties {
+public class ReadProperties {
 	
 	public  Properties readConfigData() {
 		try {
